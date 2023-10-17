@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      background-image: url(MicrosoftTeams-image.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: "Sans Serif";
+    }
+    .background{
+      /* background-color: aqua; */
+      font-size: 75px;
+      margin-top: 70px;
+      text-align: center;
+    }
+    .main{
+      z-index: 5;
+      width: 60%;
+      height: 80%;
+      border-left: 2px solid rgb(255, 255, 255);
+      border-right: 2px solid rgb(255, 255, 255);
+      /* background-color:aquamarine; */
+      margin: 0 auto;
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 100px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 30px  30px  30px  30px;
+    }
+    .title{
+      font-size: 50px;
+      margin-top: 50px;  
+      background-color: beige;
+      text-align: center;
+    }
+    img { /*This is for the back button*/
+      z-index: 3;
+      position: relative;
+      height: 4rem;
+      width: 4rem;
+      margin-left: 3%;
+    }
+    .content{
+      width: 100%;
+      height: 600px;
+      margin: 0 auto;
+      margin-top: 40px;
+      /* background-color: cadetblue; */
+    }
+    .datet{
+      width: 30%;
+      float: left;
+      margin-top: 5%;
+      margin-left: 5%;
+      margin-right: 9%;
+      /* background-color: rgb(26, 118, 121); */
+    }
+    .inputdata{
+      width: 50%;
+      float: left;
+      margin-top: 4%;
+      margin-right:1%;
+      /* background-color: blueviolet; */
+    }
+    img { /*This is for the back button*/
+      z-index: 3;
+      position: relative;
+      float: left;
+      margin-top: 3%;
+      height: 4rem;
+      width: 4rem;
+      margin-left: 5%;
+      color: #000;
+    }
+    .ctitle{
+      margin: 0 auto;
+    }
+    button{
+      height: 45px;
+      width: 75%;
+      margin-top: 50px;
+      background-color: rgba(53, 50, 50, 0.6);
+      border-radius: 30px 30px 30px 30px;
+      color: aliceblue;
+    }
+    .informaiton{
+      color: red;
+      font-size: 30px;
+    }
+  </style>
+    <script>
+      function goBack() {
+			  window.history.back();
+		  }
+      $( function() {
+        $( "#datepicker" ).datepicker({
+          onSelect: onDateChange
+        });
+      });
+      function onDateChange(dateText, inst)
+      {
+        $("#enterdate").val(dateText);
+      }
+      </script>
+</head>
+<body>
+  <div class="main">
+    <!-- <img src="back-logo-black.png" onclick="goBack()"> -->
+    <div class="background" >
+      <img src="back-logo-black.png" onclick="goBack()">
+        <div class="ctitle">Innohub signup</div>
+    </div>
+    <div class="content">
+      <form action="submit" method="get">
+        <div class="datet">
+          <div id="datepicker" required></div>
+          <input id="enterdate" data-inline = "true" type="text" placeholder="Enter date" name="getdate" hidden>
+          <div class="informaiton"><%- message %></div>
+        </div>
+        <div class="inputdata">
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Name:</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" id="inputEmail3" name="name" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" name="email" required>
+            </div>
+          </div>
+          <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Time period:</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Block" id="gridRadios1" value="block1" checked>
+                <label class="form-check-label" for="Block1">
+                  Block A/E 8:00 - 10:00A.M.
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Block" id="gridRadios2" value="block2">
+                <label class="form-check-label" for="Block2">
+                  Block B/F 10:10 - 11:30A.M.
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Block" id="gridRadios2" value="block3">
+                <label class="form-check-label" for="Block3">
+                  Block C/G 12:15 - 13:35A.M.
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Block" id="gridRadios2" value="block4">
+                <label class="form-check-label" for="Block4">
+                  Block D/H 13:45 - 15:05P.M.
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Class:</label>
+            <div class="col-sm-10">
+              <input type="class" class="form-control" id="inputEmail3" name="class" required>
+            </div>
+          </div>
+          <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Purpose:</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Purpose" id="borrow" value="borrowclass" checked>
+                <label class="form-check-label" for="borrow">
+                  Borrow Innohub Classroom
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Purpose" id="borrow" value="borrowclass" checked>
+                <label class="form-check-label" for="borrow">
+                  Borrow Innohub WoodShop
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Purpose" id="meet" value="meetwithteacher">
+                <label class="form-check-label" for="meet">
+                  Meet with administrtor(Only Block B/F)
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Addition informaiton:</label>
+            <div class="col-sm-10">
+              <textarea type="class" class="form-control" id="inputEmail3" name="additioninformation" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class=" but" id="sub">Sign in</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

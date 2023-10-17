@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Error</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="jquery.min.js"></script>
+</head>
+<body>
+
+	<img src="back-logo-black.png" onclick="goBack()">
+	<div class="main">
+		<div class="background" >
+			<div class="ctitle">innohub signup</div>
+		</div>
+		<div class="geterr">
+			<p class="err">An error occurred,</p>
+			<p class="err"><%= message %></p>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	function goBack() {
+		window.history.back();
+	}
+	setTimeout(function(){ goBack() }, 3500);
+</script>
+</html>
