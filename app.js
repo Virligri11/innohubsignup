@@ -48,7 +48,7 @@ var transporter = nodemailer.createTransport({
 app.get('/', function(req, res) {
     res.render("index.ejs");
 })
-app.get('/singup', function(req, res) {
+app.get('/signup', function(req, res) {
     res.render("recreatesignup.ejs" ,{message:""});
 })
 
@@ -85,7 +85,7 @@ app.get('/submit', function(req, res){
                 }
                 else{
                     if(time == "block1"){
-                        time = "Block A/E 8:00 - 10:00A.M.";
+                        time = "Block A/E 8:40 - 10:00A.M.";
                     }
                     if(time == "block2"){
                         time = "Block B/F 10:10 - 11:30A.M.";
@@ -132,13 +132,13 @@ app.get("/mysql",function(req,res){
         var gettot = (JSON.parse(JSON.stringify(result)))
         for(let i = 0;i<gettot.length;i++){
             if(gettot[i].time == 'block1'){
-                gettot[i].time = "Block A/E 8:00 - 10:00A.M.";
+                gettot[i].time = "Block A/E 8:40 - 10:00A.M.";
             }
             else if(gettot[i].time == 'block2'){
                 gettot[i].time = "Block B/F 10:10 - 11:30A.M.";
             }
             else if(gettot[i].time == 'block3'){
-                gettot[i].time = "Block C/G 12:15 - 13:35A.M.";
+                gettot[i].time = "Block C/G 12:15 - 13:35P.M.";
             }
             else if(gettot[i].time == 'block4'){
                 gettot[i].time = "Block D/H 13:45 - 15:05P.M.";
@@ -164,13 +164,13 @@ app.get("/total",function(req,res){
         var gettot = (JSON.parse(JSON.stringify(result)))
         for(let i = 0;i<gettot.length;i++){
             if(gettot[i].time == 'block1'){
-                gettot[i].time = "Block A/E 8:00 - 10:00A.M.";
+                gettot[i].time = "Block A/E 8:40 - 10:00A.M.";
             }
             else if(gettot[i].time == 'block2'){
                 gettot[i].time = "Block B/F 10:10 - 11:30A.M.";
             }
             else if(gettot[i].time == 'block3'){
-                gettot[i].time = "Block C/G 12:15 - 13:35A.M.";
+                gettot[i].time = "Block C/G 12:15 - 13:35P.M.";
             }
             else if(gettot[i].time == 'block4'){
                 gettot[i].time = "Block D/H 13:45 - 15:05P.M.";

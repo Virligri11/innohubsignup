@@ -313,7 +313,7 @@ button.ui-button::-moz-focus-inner {
 	pointer-events: none;
 }
 .ui-datepicker {
-	width: 400px;
+	width: 100%;
 	padding: .2em .2em 0;
 	display: none;
 }
@@ -325,8 +325,8 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker .ui-datepicker-next {
 	position: absolute;
 	top: 2px;
-	width: 3.2em;
-	height: 3.2em;
+	width: 20%;
+	height:95%;
 }
 .ui-datepicker .ui-datepicker-prev-hover,
 .ui-datepicker .ui-datepicker-next-hover {
@@ -355,8 +355,8 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker .ui-datepicker-title {
 	margin: 0 2.1em;
-	font-size: 1.5em;
-	line-height: 2em;
+	font-size: 100%;
+	line-height: 270%;
 	text-align: center;
 }
 .ui-datepicker .ui-datepicker-title select {
@@ -365,11 +365,11 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker select.ui-datepicker-month,
 .ui-datepicker select.ui-datepicker-year {
-	width: 45%;
+	width: 40%;
 }
 .ui-datepicker table {
 	width: 100%;
-	font-size: 1.5em;
+	font-size: 100%;
 	border-collapse: collapse;
 	margin: 0 0 .4em;
 }
@@ -381,7 +381,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker td {
 	border: 0;
-	padding: 1px;
+	padding: 1%;
 }
 .ui-datepicker td span,
 .ui-datepicker td a {

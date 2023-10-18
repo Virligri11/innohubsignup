@@ -17,7 +17,7 @@
   .main{
     z-index: 5;
     width: 60%;
-    height: 80%;
+    height: cover;
     border-left: 2px solid rgb(255, 255, 255);
     border-right: 2px solid rgb(255, 255, 255);
     /* background-color:aquamarine; */
@@ -83,6 +83,7 @@
     height: 45px;
     width: 75%;
     margin-top: 50px;
+    margin-bottom: 40px;
     background-color: rgba(53, 50, 50, 0.6);
     border-radius: 30px 30px 30px 30px;
     color: aliceblue;
