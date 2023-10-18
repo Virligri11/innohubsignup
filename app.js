@@ -62,7 +62,6 @@ app.get('/submit', function(req, res){
     var date = req.query.getdate;
     var fin = date.split("/")
     date = fin[2]+"-"+fin[0]+"-"+fin[1];
-    console.log(addinfo.indexOf('\r'))
     // console.log(date);
     if(date == "" || date=="undefined" || date=="undefined--undefined"){
         // console.log("error")
@@ -185,6 +184,7 @@ app.get("/total",function(req,res){
 app.get('/cancel', function(req, res) {
     res.render("cancel.ejs",{message:""});
 })
+
 app.get('/cancelsuccess', function(req, res) {
     var date = req.query.date;
     var fin = date.split("/")
@@ -218,12 +218,13 @@ app.get('/cancelsuccess', function(req, res) {
     });
     return;
 });
+
 var server = app.listen(8081, function () {//应用启动端口为8081
 
-    var host = "192.168.123.27/";
+    var host = "localhost";
     var port = server.address().port;
 
-    console.log("应用实例，访问地址为 https://%s%s", host, port)
+    console.log("应用实例，访问地址为 https://%s/%s", host, port)
 
 });
 
@@ -231,3 +232,5 @@ var server = app.listen(8081, function () {//应用启动端口为8081
 // student@192.168.123.27
 
 // fin5)SDK
+
+
