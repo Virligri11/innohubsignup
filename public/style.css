@@ -5,6 +5,8 @@
   body{
     background-image: url(MicrosoftTeams-image.png);
     background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     background-size: cover;
     font-family: "Sans Serif";
   }
