@@ -8,10 +8,14 @@
 <body>
     <div class="col-sm-10">
         <textarea type="class" class="form-control" id="inputEmail3" name="additioninformation" rows="4"></textarea>
+        <button class="test" onclick="Click()"></button>
     </div>
+
 </body>
 <script>
-    var n = document.getElementById('inputEmail3').val();
-    console.log(n)
+    function Click(){
+        var n = document.getElementById('inputEmail3').value
+        console.log(n.replace(/\n/g, "<br>"));
+    }
 </script>
 </html>

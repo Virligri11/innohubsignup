@@ -67,54 +67,43 @@ app.get('/submit', function(req, res){
         // console.log("error")
        res.render("recreatesignup.ejs",{message:"date error"})
     }
+    else{
     var findrepeat = 'select count(1) from records where name = ? and email = ? and time = ? and date = ?';
-    connection.query(findrepeat,[Name,email,time,date],(err,result)=>{
-        if(err){
-            console.log(err.message);
-        }
-        var testn = (JSON.parse(JSON.stringify(result)))
-		var whetherrepeat =  testn[0]['count(1)'];
-        if(whetherrepeat > 0){
-            res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time});
-        }
-        else{
-            const insert = "insert into records(name,email,time,classname,purpose,addinfo,date) VALUES(?,?,?,?,?,?,?)"
-            connection.query(insert,[Name.toLowerCase(),email,time,classname.toLocaleLowerCase(),purpose,addinfo,date],(err,result)=>{
-                if(err){
-                    console.log(err.message);
-                }
-                else{
-                    if(time == "block1"){
-                        time = "Block A/E 8:40 - 10:00A.M.";
+        connection.query(findrepeat,[Name,email,time,date],(err,result)=>{
+            if(err){
+                console.log(err.message);
+            }
+            var testn = (JSON.parse(JSON.stringify(result)))
+            var whetherrepeat =  testn[0]['count(1)'];
+            if(whetherrepeat > 0){
+                res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time});
+            }
+            else{
+                const insert = "insert into records(name,email,time,classname,purpose,addinfo,date) VALUES(?,?,?,?,?,?,?)"
+                connection.query(insert,[Name.toLowerCase(),email,time,classname.toLocaleLowerCase(),purpose,addinfo,date],(err,result)=>{
+                    if(err){
+                        console.log(err.message);
                     }
-                    if(time == "block2"){
-                        time = "Block B/F 10:10 - 11:30A.M.";
+                    else{
+                        var sendinfomation = Name+" has signup the innohub at "+date+" "+time+" for "+ classname+"\nPurpose: "+purpose+"\nAddinformation:"+addinfo;
+                        var mailOptions = {
+                            from: 'signup-notification@ncpachina.org',
+                            to: email,
+                            cc:'thorn@ncpachina.org',
+                            subject: 'Innohub signup',
+                            text: sendinfomation,
+                        }                                                                    
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if (error) {
+                                console.log(error.message)
+                            }
+                        });
+                        res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time})
                     }
-                    if(time == "block3"){
-                        time = "Block C/G 12:15 - 13:35A.M.";
-                    }
-                    if(time == "block4"){
-                        time = "Block D/H 13:45 - 15:05P.M.";
-                    }
-
-                    var sendinfomation = Name+" has signup the innohub at "+date+" "+time+" for "+ classname+"\nPurpose: "+purpose+"\nAddinformation:"+addinfo;
-                    var mailOptions = {
-                        from: 'signup-notification@ncpachina.org',
-                        to: email,
-                        cc:'thorn@ncpachina.org',
-                        subject: 'Innohub signup',
-                        text: sendinfomation,
-                    }                                                                    
-                    transporter.sendMail(mailOptions, function(error, info){
-                        if (error) {
-                            console.log(error.message)
-                        }
-                    });
-                    res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time})
-                }
-            }) 
-        }
-    })
+                }) 
+            }
+        })
+    }
 });
 
 // create table records(name VARCHAR(32),email VARCHAR(32),time VARCHAR(24), classname VARCHAR(24), purpose VARCHAR(24), addinfo Text,date VARCHAR(24));
@@ -162,21 +151,6 @@ app.get("/total",function(req,res){
             console.log(err.message);
         }
         var gettot = (JSON.parse(JSON.stringify(result)))
-        for(let i = 0;i<gettot.length;i++){
-            if(gettot[i].time == 'block1'){
-                gettot[i].time = "Block A/E 8:40 - 10:00A.M.";
-            }
-            else if(gettot[i].time == 'block2'){
-                gettot[i].time = "Block B/F 10:10 - 11:30A.M.";
-            }
-            else if(gettot[i].time == 'block3'){
-                gettot[i].time = "Block C/G 12:15 - 13:35P.M.";
-            }
-            else if(gettot[i].time == 'block4'){
-                gettot[i].time = "Block D/H 13:45 - 15:05P.M.";
-            }
-        }
-
         res.render("totalpanel.ejs",{jsondata:JSON.stringify(gettot)})
     });
 })
@@ -219,12 +193,16 @@ app.get('/cancelsuccess', function(req, res) {
     return;
 });
 
+app.get('/test',function(req,res){
+    res.render('test.ejs')
+})
+
 var server = app.listen(8081, function () {//应用启动端口为8081
 
     var host = "localhost";
     var port = server.address().port;
 
-    console.log("应用实例，访问地址为 https://%s/%s", host, port)
+    console.log("应用实例，访问地址为 http://%s:%s", host, port)
 
 });
 

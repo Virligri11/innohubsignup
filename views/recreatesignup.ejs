@@ -53,7 +53,7 @@
     }
     .ctitle{
       /* margin-left: 45%; */
-      font-size: 70%;
+      font-size: 75%;
     }
     img { /*This is for the back button*/
       position: absolute;
@@ -74,7 +74,7 @@
       position: relative;
       float: left;
       margin-top: 7%;
-      margin-left: 1%;
+      margin-left: 9%;
       margin-right: 7%;
       /* background-color: rgb(26, 118, 121); */
     }
@@ -84,7 +84,14 @@
       float: left;
       margin-top: 4%;
       margin-right:1%;
-      /* background-color: blueviolet; */
+    }
+    .getleft{
+      float: left;
+      width: 50%;
+    }
+    .getright{
+      width: 50%;
+      float: left;
     }
     img { /*This is for the back button*/
       z-index: 3;
@@ -107,7 +114,7 @@
     }
     .informaiton{
       color: red;
-      font-size: 10%;
+      font-size: 300%;
     }
     label{
       font-size: 100%;
@@ -157,31 +164,61 @@
             </div>
           </div>
           <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Time period:</legend>
+            <legend class="col-form-label col-sm-2 pt-0 getmain">Time period:</legend>
             <div class="col-sm-10">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="Block" id="gridRadios1" value="block1" checked>
-                <label class="form-check-label" for="gridRadios1">
-                  Block A/E 8:40 - 10:00A.M.
-                </label>
+              <div class="getleft">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Block" id="gridRadios1" value="Block A" checked>
+                  <label class="form-check-label" for="gridRadios1">
+                    Block A
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Block" id="gridRadios2" value="Block B">
+                  <label class="form-check-label" for="gridRadios2">
+                    Block B
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Block" id="gridRadios3" value="Block C">
+                  <label class="form-check-label" for="gridRadios3">
+                    Block C
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="Block" id="gridRadios4" value="Block D">
+                  <label class="form-check-label" for="gridRadios4">
+                    Block D
+                  </label>
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="Block" id="gridRadios2" value="block2">
-                <label class="form-check-label" for="gridRadios2">
-                  Block B/F 10:10 - 11:30A.M.
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="Block" id="gridRadios3" value="block3">
-                <label class="form-check-label" for="gridRadios3">
-                  Block C/G 12:15 - 13:35P.M.
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="Block" id="gridRadios4" value="block4">
-                <label class="form-check-label" for="gridRadios4">
-                  Block D/H 13:45 - 15:05P.M.
-                </label>
+              <div class="getright">
+                <div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Block" id="gridRadios5" value="Block E">
+                    <label class="form-check-label" for="gridRadios5">
+                      Block E
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Block" id="gridRadios6" value="Block F">
+                    <label class="form-check-label" for="gridRadios6">
+                      Block F
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Block" id="gridRadios7" value="Block G">
+                    <label class="form-check-label" for="gridRadios7">
+                      Block G
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Block" id="gridRadios8" value="Block H">
+                    <label class="form-check-label" for="gridRadios8">
+                      Block H
+                    </label>
+                  </div>
+                  </div>
               </div>
             </div>
           </fieldset>
@@ -195,19 +232,19 @@
             <legend class="col-form-label col-sm-2 pt-0">Purpose:</legend>
             <div class="col-sm-10">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="Purpose" id="borrow" value="borrowclass" checked>
+                <input class="form-check-input" type="radio" name="Purpose" id="borrow" value="Borrow Classroom" checked>
                 <label class="form-check-label" for="borrow">
                   Borrow Innohub Classroom
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="Purpose" id="borrow2" value="borrowclass" checked>
+                <input class="form-check-input" type="radio" name="Purpose" id="borrow2" value="Borrow WoodShop" checked>
                 <label class="form-check-label" for="borrow2">
                   Borrow Innohub WoodShop
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="Purpose" id="meet" value="meetwithteacher">
+                <input class="form-check-input" type="radio" name="Purpose" id="meet" value=" Meet with administrator">
                 <label class="form-check-label" for="meet">
                   Meet with administrator(Only Block B/F)
                 </label>

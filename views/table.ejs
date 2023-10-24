@@ -55,7 +55,7 @@
   for(var i = 0;i<test.length;i++){
     content+= "<tr>"
     for (var j = 0;j<Object.values(test[0]).length;j++){
-      var info = "<td>"+Object.values(test[i])[j]+"</td>";
+      var info = "<td>"+Object.values(test[i])[j].replace(/\n/g, "<br>")+"</td>";
       content+=info;
     }
     content = content+"</tr>";
