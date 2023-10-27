@@ -24,9 +24,9 @@ const $ = jquery
 const mysql = require("mysql");
 const connection= mysql.createConnection({
 	host:'127.0.0.1',
-	user:'student',
-	password:'fin5)SDK',
-	database:'students'
+	user:'root',
+	password:'20070704millie',
+	database:'innohub'
 });
 
 var transporter = nodemailer.createTransport({
@@ -53,7 +53,7 @@ app.get('/signup', function(req, res) {
 })
 
 app.get('/submit', function(req, res){
-    var Name = req.query.name.trim();
+    var Name = req.query.name;
     var email = req.query.email;
     var time = req.query.Block;
     var classname = req.query.class;
@@ -80,24 +80,24 @@ app.get('/submit', function(req, res){
             }
             else{
                 const insert = "insert into records(name,email,time,classname,purpose,addinfo,date) VALUES(?,?,?,?,?,?,?)"
-                connection.query(insert,[Name.toLowerCase(),email,time,classname.toLocaleLowerCase(),purpose,addinfo,date],(err,result)=>{
+                connection.query(insert,[Name,email,time,classname,purpose,addinfo,date],(err,result)=>{
                     if(err){
                         console.log(err.message);
                     }
                     else{
-                        var sendinfomation = Name+" has signup the innohub at "+date+" "+time+" for "+ classname+"\nPurpose: "+purpose+"\nAddinformation:"+addinfo;
-                        var mailOptions = {
-                            from: 'signup-notification@ncpachina.org',
-                            to: email,
-                            cc:'thorn@ncpachina.org',
-                            subject: 'Innohub signup',
-                            text: sendinfomation,
-                        }                                                                    
-                        transporter.sendMail(mailOptions, function(error, info){
-                            if (error) {
-                                console.log(error.message)
-                            }
-                        });
+                        // var sendinfomation = Name+" has signup the innohub at "+date+" "+time+" for "+ classname+"\nPurpose: "+purpose+"\nAddinformation:"+addinfo;
+                        // var mailOptions = {
+                        //     from: 'signup-notification@ncpachina.org',
+                        //     to: email,
+                        //     cc:'thorn@ncpachina.org',
+                        //     subject: 'Innohub signup',
+                        //     text: sendinfomation,
+                        // }                                                                    
+                        // transporter.sendMail(mailOptions, function(error, info){
+                        //     if (error) {
+                        //         console.log(error.message)
+                        //     }
+                        // });
                         res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time})
                     }
                 }) 
