@@ -24,9 +24,9 @@ const $ = jquery
 const mysql = require("mysql");
 const connection= mysql.createConnection({
 	host:'127.0.0.1',
-	user:'root',
-	password:'20070704millie',
-	database:'innohub'
+	user:'student',
+	password:'fin5)SDK',
+	database:'students'
 });
 
 var transporter = nodemailer.createTransport({
@@ -85,19 +85,19 @@ app.get('/submit', function(req, res){
                         console.log(err.message);
                     }
                     else{
-                        // var sendinfomation = Name+" has signup the innohub at "+date+" "+time+" for "+ classname+"\nPurpose: "+purpose+"\nAddinformation:"+addinfo;
-                        // var mailOptions = {
-                        //     from: 'signup-notification@ncpachina.org',
-                        //     to: email,
-                        //     cc:'thorn@ncpachina.org',
-                        //     subject: 'Innohub signup',
-                        //     text: sendinfomation,
-                        // }                                                                    
-                        // transporter.sendMail(mailOptions, function(error, info){
-                        //     if (error) {
-                        //         console.log(error.message)
-                        //     }
-                        // });
+                        var sendinfomation = Name+" has signup the innohub at "+date+" "+time+" for "+ classname+"\nPurpose: "+purpose+"\nAddinformation:"+addinfo;
+                        var mailOptions = {
+                            from: 'signup-notification@ncpachina.org',
+                            to: email,
+                            cc:'thorn@ncpachina.org',
+                            subject: 'Innohub signup',
+                            text: sendinfomation,
+                        }                                                                    
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if (error) {
+                                console.log(error.message)
+                            }
+                        });
                         res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time})
                     }
                 }) 
@@ -205,6 +205,7 @@ var server = app.listen(8081, function () {//应用启动端口为8081
     console.log("应用实例，访问地址为 http://%s:%s", host, port)
 
 });
+//TST create by Millie Pu
 
 
 // student@192.168.123.27
