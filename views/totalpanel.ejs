@@ -34,7 +34,7 @@
 
   var table = $("#mytable");
   var test = <%- jsondata %>;
-
+  
   // var n = "onclick='window.location.href('testpanel')'";
   var init = "<tr>"
   for (var i = 0;i<Object.keys(test[0]).length;i++){
@@ -42,12 +42,32 @@
     init+=tit;
    }
   init = init+"</a></tr>";
+
+  // var k = []
+  // var inde = 0;
+  // for(var i = 1;i<test.length;i++){
+  //   if(test[i-1].name == test[i].name && test[i-1].date == test[i-1].date && test[i-1].addinfo == test[i-1].addinfo){
+  //     console.log(i)
+  //     k[inde]=i;
+  //     inde++;
+  //   }
+  // }
+  // console.log(k)
+  
+  // for(var i = 0;i<inde;i++){
+  //     test[k[i]].name = "";
+  //     test[k[i]].email = "";
+  //     test[k[i]].date = ""
+  //     test[k[i]].purpose = "";
+  // }
   // table.append(init);    
+  console.log(test)
   var content =""
   for(var i = 0;i<test.length;i++){
     content+= "<tr>"
     for (var j = 0;j<Object.values(test[0]).length;j++){
       var n = Object.values(test[i])[j];
+
       var info = "<td>"+n.replace(/\n/g, "<br>")+"</td>";
       content+=info;
     }

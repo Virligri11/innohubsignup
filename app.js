@@ -63,86 +63,69 @@ app.get('/submit', function(req, res){
     var fin = date.split("/")
     date = fin[2]+"-"+fin[0]+"-"+fin[1];
     // console.log(date);
+    var totaltime = "";
+    for(var  i =0;i<time.length;i++){
+        totaltime+=time[i]+", "
+    }
+    var pur="";
+    for(var  i =0;i<purpose.length;i++){
+        pur+=purpose[i]+", "
+    }
+    console.log(pur)
     if(date == "" || date=="undefined" || date=="undefined--undefined"){
         // console.log("error")
        res.render("recreatesignup.ejs",{message:"date error"})
     }
     else{
     var findrepeat = 'select count(1) from records where name = ? and email = ? and time = ? and date = ?';
-        connection.query(findrepeat,[Name,email,time,date],(err,result)=>{
+        connection.query(findrepeat,[Name,email,time[0],date],(err,result)=>{
             if(err){
                 console.log(err.message);
             }
             var testn = (JSON.parse(JSON.stringify(result)))
+            // // console.log(testn);
             var whetherrepeat =  testn[0]['count(1)'];
             if(whetherrepeat > 0){
                 res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time});
             }
             else{
-                const insert = "insert into records(name,email,time,classname,purpose,addinfo,date) VALUES(?,?,?,?,?,?,?)"
-                connection.query(insert,[Name,email,time,classname,purpose,addinfo,date],(err,result)=>{
-                    if(err){
-                        console.log(err.message);
+                console.log(Name,email,time,classname,purpose,addinfo,date);
+                for(var i  = 0;i<time.length;i++){
+                    var k = time[i];
+                    // console.log(typeof k)
+                    const insert = "insert into records(name,email,time,classname,purpose,addinfo,date) VALUES(?,?,?,?,?,?,?);"
+                    connection.query(insert,[Name,email,k,classname,pur,addinfo,date],(err,results)=>{
+                        if(err){
+                            console.log(err.message);
+                        }
+                    }) 
+                }
+                var sendinfomation = Name+" has signup the innohub at "+date+" "+totaltime+" for "+ classname+"\nPurpose: "+pur+"\nAddinformation:"+addinfo;
+                var mailOptions = {
+                    from: 'signup-notification@ncpachina.org',
+                    to: email,
+                    cc:'thorn@ncpachina.org',
+                    subject: 'Innohub signup',
+                    text: sendinfomation,
+                }                                                                    
+                transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                        console.log(error.message)
                     }
-                    else{
-                        var sendinfomation = Name+" has signup the innohub at "+date+" "+time+" for "+ classname+"\nPurpose: "+purpose+"\nAddinformation:"+addinfo;
-                        var mailOptions = {
-                            from: 'signup-notification@ncpachina.org',
-                            to: email,
-                            cc:'thorn@ncpachina.org',
-                            subject: 'Innohub signup',
-                            text: sendinfomation,
-                        }                                                                    
-                        transporter.sendMail(mailOptions, function(error, info){
-                            if (error) {
-                                console.log(error.message)
-                            }
-                        });
-                        res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:time})
-                    }
-                }) 
+                });
+                res.render("submit.ejs",{teachername:Name,classs:classname,date:date,timePeriod:totaltime})
             }
         })
     }
 });
 
+//ALTER TABLE records MODIFY COLUMN purpose VARCHAR(64);
 // create table records(name VARCHAR(32),email VARCHAR(32),time VARCHAR(24), classname VARCHAR(24), purpose VARCHAR(24), addinfo Text,date VARCHAR(24));
 
 
-app.get("/mysql",function(req,res){
-    var datadate = 'select * from records where date >= ? order by date desc;';
-    var n=new Date();
-    var date = n.getFullYear()+"-"+(n.getMonth()+1<10?"0"+n.getMonth()+1:n.getMonth()+1)+"-"+(n.getDate()>19?"0"+n.getDate:n.getDate());
-    // console.log(date);
-    connection.query(datadate,date,(err,result)=>{
-        if(err){
-            console.log(err.message);
-        }
-        var gettot = (JSON.parse(JSON.stringify(result)))
-        for(let i = 0;i<gettot.length;i++){
-            if(gettot[i].time == 'block1'){
-                gettot[i].time = "Block A/E 8:40 - 10:00A.M.";
-            }
-            else if(gettot[i].time == 'block2'){
-                gettot[i].time = "Block B/F 10:10 - 11:30A.M.";
-            }
-            else if(gettot[i].time == 'block3'){
-                gettot[i].time = "Block C/G 12:15 - 13:35P.M.";
-            }
-            else if(gettot[i].time == 'block4'){
-                gettot[i].time = "Block D/H 13:45 - 15:05P.M.";
-            }
-            delete gettot[i].purpose;
-            delete gettot[i].email;
-            delete gettot[i].addinfo;
-        }
-        
-        res.render("table.ejs",{jsondata:JSON.stringify(gettot)})
-    });
-})
 
 app.get("/total",function(req,res){
-    var datadate = 'select * from records where date >= ? order by date desc;';
+    var datadate = 'select * from records order by date desc;';
     var n=new Date();
     var date = n.getFullYear()+"-"+(n.getMonth()+1<10?"0"+n.getMonth()+1:n.getMonth()+1)+"-"+(n.getDate()>19?"0"+n.getDate:n.getDate());
     // console.log(date);
@@ -166,31 +149,38 @@ app.get('/cancelsuccess', function(req, res) {
     var timeperiod = req.query.timeperiod;
     var teachername = req.query.teachername.trim();
     var classname=req.query.classname.trim();
-    var select = 'SELECT count(1) FROM records where date = ? and time = ? and name = ? and classname = ?';
-    connection.query(select,[date,timeperiod,teachername.toLowerCase(),classname.toLowerCase()],(err,result)=>{
-        if(err) {
-            res.render("error.ejs",{message:"Please check the date and the name"})
-        }
-        else {
-            var testn = (JSON.parse(JSON.stringify(result)))
-		    var whethersignup =  testn[0]['count(1)'];
-            if(whethersignup == 0){
-                res.render("error.ejs",{message:"you have not sign up the page"})
+    var whethersignup;
+
+    var totaltime =""
+    for(var i = 0;i<timeperiod.length;i++){
+        totaltime+=timeperiod[i]+",";
+    }
+    for(var i =0;i<timeperiod.length;i++){
+        var k = timeperiod[i]
+        var select = 'SELECT count(1) FROM records where date = ? and time = ? and name = ? and classname = ?;';
+        connection.query(select,[date,k,teachername.toLowerCase(),classname.toLowerCase()],(err,result)=>{
+            if(err) {
+                res.render("error.ejs",{message:"Please check the date and the name"})
             }
-            else{
-                const d = 'delete from records where date = ? and time = ? and name = ? and classname = ?';
-                connection.query(d,[date,timeperiod,teachername.toLowerCase(),classname.toLowerCase()],(err,result)=>{
-                    if(err) {console.log(err.message)}
-                    else {
-                        // console.log('数据删除成功');
-                        res.render("cancelsuccess.ejs", {teachername:teachername,classs:classname,date:date,timePeriod:timeperiod});
-                    }
+            var testn = (JSON.parse(JSON.stringify(result)))
+            console.log(testn[0]['count(1)'])
+            whethersignup +=  testn[0]['count(1)'];
+        });
+        // console.log(whethersignup)
+    }
+    console.log(whethersignup)
+    if(whethersignup == 0){
+        res.render("error.ejs",{message:"You have not sign up the page or have error information"})
+    }
+    else{
+        for(var i = 0;i<timeperiod.length;i++){
+            const d = 'delete from records where date = ? and time = ? and name = ? and classname = ?';
+            connection.query(d,[date,timeperiod[i],teachername.toLowerCase(),classname.toLowerCase()],(err,results)=>{
+                if(err) {console.log(err.message)}
             });
         }
-        }
-        return;
-    });
-    return;
+        res.render("cancelsuccess.ejs", {teachername:teachername,classs:classname,date:date,timePeriod:totaltime});
+    }
 });
 
 app.get('/test',function(req,res){

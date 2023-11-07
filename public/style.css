@@ -31,7 +31,7 @@ body{
 }
 .ctitle{
   /* margin-left: 45%; */
-  font-size: 75%;
+  font-size: 70%;
   margin-top: 15%;
 }
 .logo{
@@ -45,6 +45,7 @@ body{
   height: 75%;
   margin: 0 auto;
   font-size: 130%; 
+  position: relative;
 }
 .datet{
   width: 30%;
@@ -60,6 +61,7 @@ body{
   height: 70%;
   float: left;
   margin-top: 4%;
+  position: relative;
 }
 .getleft{
   float: left;
@@ -107,4 +109,12 @@ button{
 
 #mytable{
   margin-top: 4%;
+}
+.getmain{
+  width: 100%;
+  text-align: left;
+  margin-left: 3%;
+}
+.blo{
+  margin-left: 6%;
 }

@@ -67,24 +67,26 @@
       width: 30%;
       height: 50%;
       position: relative;
-      float: left;
+      margin: 0 auto;
       margin-top: 5%;
-      margin-left: 7%;
-      margin-right: 7%;
+      /* background-color: aqua; */
     }
-    .inputdata{
-      width: 50%;
+    .inputdatal{
+      width: 45%;
       height: 70%;
       float: left;
       margin-top: 4%;
+      margin-left: 2%;
     }
     .getleft{
       float: left;
       width: 50%;
+      /* background-color: blue; */
     }
     .getright{
       width: 50%;
       float: left;
+      /* background-color: blanchedalmond; */
     }
     .imgbut { /*This is for the back button*/
       z-index: 5;
@@ -108,12 +110,35 @@
       color: red;
       font-size: 300%;
     }
+    .le{
+      width: 45%;
+      margin-left: 2%;
+      /* background-color: aqua; */
+      margin-top: 4%;
+      float: left;
+    }
+    .ri{
+      width: 45%;
+      margin-top: 3%;
+      float: right;
+      /* background-color: bisque; */
+    }
+    legend{
+      /* background-color: aliceblue; */
+      width: 100%;
+      /* background-color: aquamarine; */
+      position: relative;
+      /* float: left; */
+      text-align: left;
+    }
     .form-control{
       border: none;
       background-color: inherit;
       outline: none;
       border-bottom: 1px solid gray;
       border-radius: 0 0 0 0 ;
+      width: 90%;
+      margin-left: 3%;
     }
   </style>
     <script>
@@ -147,11 +172,11 @@
           <div class="informaiton"><%- message %></div>
         </div>
 
-        <div class="inputdata">
+        <div class="le">
           <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Name:</label>
             <div class="col-sm-10">
-              <input type="name" class="form-control" id="inputEmail3" name="name" placeholder="Fisrtname Lastname" required>
+              <input type="text" class="form-control" id="inputEmail3" name="name" placeholder="Fisrtname Lastname" required>
             </div>
           </div>
           <div class="row mb-3">
@@ -160,100 +185,87 @@
               <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="xxx@ncpachina.org" required>
             </div>
           </div>
-          <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0 getmain">Time period:</legend>
-            <div class="col-sm-10">
-              <div class="getleft">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Block" id="gridRadios1" value="Block A" checked>
-                  <label class="form-check-label" for="gridRadios1">
-                    Block A
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Block" id="gridRadios2" value="Block B">
-                  <label class="form-check-label" for="gridRadios2">
-                    Block B
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Block" id="gridRadios3" value="Block C">
-                  <label class="form-check-label" for="gridRadios3">
-                    Block C
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Block" id="gridRadios4" value="Block D">
-                  <label class="form-check-label" for="gridRadios4">
-                    Block D
-                  </label>
-                </div>
-              </div>
-              <div class="getright">
-                <div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Block" id="gridRadios5" value="Block E">
-                    <label class="form-check-label" for="gridRadios5">
-                      Block E
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Block" id="gridRadios6" value="Block F">
-                    <label class="form-check-label" for="gridRadios6">
-                      Block F
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Block" id="gridRadios7" value="Block G">
-                    <label class="form-check-label" for="gridRadios7">
-                      Block G
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="Block" id="gridRadios8" value="Block H">
-                    <label class="form-check-label" for="gridRadios8">
-                      Block H
-                    </label>
-                  </div>
-                  </div>
-              </div>
-            </div>
-          </fieldset>
           <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Class:</label>
             <div class="col-sm-10">
-              <input type="class" class="form-control" id="inputEmail3" name="class" placeholder="Class" required>
+              <input type="text" class="form-control" id="inputEmail3" name="class" placeholder="Class" required>
             </div>
           </div>
-          <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Purpose:</legend>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="Purpose" id="borrow" value="Borrow Classroom" checked>
-                <label class="form-check-label" for="borrow">
-                  Borrow Innohub Classroom
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="Purpose" id="borrow2" value="Borrow WoodShop" checked>
-                <label class="form-check-label" for="borrow2">
-                  Borrow Innohub WoodShop
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="Purpose" id="meet" value=" Meet with administrator">
-                <label class="form-check-label" for="meet">
-                  Meet with Facilitator
-                </label>
-              </div>
-            </div>
-          </fieldset>
           <div class="row mb-3">
             <label for="inputadditional" class="col-sm-2 col-form-label">Additional Information:</label>
             <div class="col-sm-10">
-              <textarea type="class" class="form-control" id="inputadditional" name="additioninformation" placeholder="Additional Information" rows="4"></textarea>
+              <textarea type="text" class="form-control" id="inputadditional" name="additioninformation" placeholder="Additional Information" rows="4"></textarea>
             </div>
           </div>
+        </div>
+        <div class="ri">
+          <fieldset class="row mb-3">
+            <legend class="gettit">Time period:</legend>
+            <div class="col-sm-10">
+                <div class="getleft">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="Block" id="gridRadios1" value="Block A">
+                  <label class="form-check-label" for="gridRadios1">Block A</label>
+                </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Block" id="gridRadios2" value="Block B">
+                    <label class="form-check-label" for="gridRadios2">Block B</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Block" id="gridRadios3" value="Block C">
+                    <label class="form-check-label" for="gridRadios3">Block C</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Block" id="gridRadios4" value="Block D">
+                    <label class="form-check-label" for="gridRadios4">Block D</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="Block" id="gridRadios4" value="After Hours">
+                    <label class="form-check-label" for="gridRadios4">After Hours</label>
+                  </div>
+                </div>
+                <div class="getright">
+                  <div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="Block" id="gridRadios5" value="Block E">
+                      <label class="form-check-label" for="gridRadios5">Block E</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="Block" id="gridRadios6" value="Block F">
+                      <label class="form-check-label" for="gridRadios6">Block F</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="Block" id="gridRadios7" value="Block G">
+                      <label class="form-check-label" for="gridRadios7">Block G</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="Block" id="gridRadios8" value="Block H">
+                      <label class="form-check-label" for="gridRadios8">Block H</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="row mb-3">
+              <legend class="gettit" >Purpose:</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="Purpose" id="borrow" value="Borrow Classroom">
+                  <label class="form-check-label" for="borrow">Borrow Innohub Classroom</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="Purpose" id="borrow2" value="Borrow WoodShop">
+                  <label class="form-check-label" for="borrow2">
+                    Borrow Innohub WoodShop
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="Purpose" id="meet" value=" Meet with administrator">
+                  <label class="form-check-label" for="meet">Meet with Facilitator</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
         </div>
         <button type="submit" class=" but" id="sub">Sign in</button>
       </form>
