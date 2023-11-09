@@ -68,9 +68,7 @@ app.get('/submit', function(req, res){
         totaltime+=time[i]+", "
     }
     var pur="";
-    for(var  i =0;i<purpose.length;i++){
-        pur+=purpose[i]+", "
-    }
+    pur = purpose;
     console.log(pur)
     if(date == "" || date=="undefined" || date=="undefined--undefined"){
         // console.log("error")
@@ -100,7 +98,7 @@ app.get('/submit', function(req, res){
                         }
                     }) 
                 }
-                var sendinfomation = Name+" has signup the innohub at "+date+" "+totaltime+" for "+ classname+"\nPurpose: "+pur+"\nAddinformation:"+addinfo;
+                var sendinfomation = Name+" has signup the innohub at "+date+" "+totaltime+" for "+ classname+"\nPurpose: "+pur+"\n Add information:"+addinfo;
                 var mailOptions = {
                     from: 'signup-notification@ncpachina.org',
                     to: email,
@@ -195,7 +193,7 @@ var server = app.listen(8081, function () {//应用启动端口为8081
     console.log("应用实例，访问地址为 http://%s:%s", host, port)
 
 });
-//TST create by Millie Pu
+//TST create by Millie Pu3
 
 
 // student@192.168.123.27
