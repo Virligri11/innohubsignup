@@ -29,21 +29,6 @@ const connection= mysql.createConnection({
 	database:'students'
 });
 
-var transporter = nodemailer.createTransport({
-    service: "Outlook365",
-    host: 'smtp.office365.com',
-    secureConnection: false, // TLS requires secureConnection to be false
-    port: 587, // port for secure SMTP
-    tls: {
-       ciphers:'SSLv3'
-    },
-    auth: {
-        user: 'signup-notification@ncpachina.org',
-        pass: 'fJG7H3,W'
-    }
-});
-
-
 
 app.get('/', function(req, res) {
     res.render("index.ejs");
